@@ -1,0 +1,12 @@
+{
+  "presets": ["babel-preset-env", "babel-preset-stage-2"],
+  "env": {
+  },
+  "plugins": [
+    ["module-resolver", {
+      "alias": {
+      },
+    }
+  ]
+]
+}

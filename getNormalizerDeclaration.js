@@ -5,6 +5,7 @@ export default (model) => {
 
   const getRelations = (model) => {
     return _.reduce(model.relations, (acc, relation, relationName) => {
+      if (relation.polymorphic) return acc;
       if (relation.type === 'hasMany') {
         return `${acc}\n  ${relationName}: [ ${relation.model[0].toLowerCase()}${relation.model.slice(1)} ],`
       } else if (relation.type === 'belongsTo' || relation.type === 'hasOne') {
@@ -14,8 +15,8 @@ export default (model) => {
   }
 
   return `
-  const ${camelCaseModelName} = new schema.Entity('${camelCaseModelName}s', {${getRelations(model)}
-  const ${camelCaseModelName}s = new schema.Array(${camelCaseModelName});
+  export const ${camelCaseModelName} = new schema.Entity('${camelCaseModelName}s', {${getRelations(model)}
   });
+  export const ${camelCaseModelName}s = new schema.Array(${camelCaseModelName});
   `
 }

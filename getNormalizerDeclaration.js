@@ -18,5 +18,6 @@ export default (model) => {
   export const ${camelCaseModelName} = new schema.Entity('${camelCaseModelName}s', {${getRelations(model)}
   });
   export const ${camelCaseModelName}s = new schema.Array(${camelCaseModelName});
+  export const ${camelCaseModelName}Map = new schema.Values(${camelCaseModelName});
   `
 }
